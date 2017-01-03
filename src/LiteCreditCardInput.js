@@ -102,7 +102,7 @@ export default class LiteCreditCardInput extends Component {
     if (!field) return;
     this.refs[field].focus();
     LayoutAnimation.easeInEaseOut();
-  }
+  };
 
   _inputProps = field => {
     const {
@@ -125,12 +125,10 @@ export default class LiteCreditCardInput extends Component {
   };
 
   _iconToShow = () => {
-    const { focused, values: { type } } = this.props;
-    if (focused === "cvc" && type === "american-express") return "cvc_amex";
-    if (focused === "cvc") return "cvc";
+    const { values: { type } } = this.props;
     if (type) return type;
     return "placeholder";
-  }
+  };
 
   render() {
     const { focused, values: { number }, inputStyle, status: { number: numberStatus } } = this.props;
@@ -143,6 +141,7 @@ export default class LiteCreditCardInput extends Component {
           showRightPart ? s.hidden : s.expanded,
         ]}>
           <CCInput {...this._inputProps("number")}
+              onSubmitEditing={showRightPart ? this._focusNumber : this._focusExpiry }
               containerStyle={s.numberInput} />
         </View>
         <TouchableOpacity onPress={showRightPart ? this._focusNumber : this._focusExpiry }>

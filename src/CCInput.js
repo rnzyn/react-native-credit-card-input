@@ -88,6 +88,7 @@ export default class CCInput extends Component {
               placeholder={placeholder}
               value={value}
               onFocus={this._onFocus}
+              onSubmitEditing={this.props.onSubmitEditing}
               onChangeText={this._onChange} />
         </View>
       </TouchableOpacity>

@@ -106,6 +106,12 @@ export default function connectToState(CreditCardInput) {
     };
 
     _change = (field, value) => {
+      if (field === "expiry") {
+        const prevValue = this.state.values[field];
+        // Need to do this so we can add the slash once the month has been entered without
+        // causing issues when the user uses the backspace
+        if (prevValue && prevValue.length === 1 && value.length === 2) { value = `${value}/`}
+      }
       this.setValues({ [field]: value });
     };
 

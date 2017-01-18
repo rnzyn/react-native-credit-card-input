@@ -85,13 +85,7 @@ export default function connectToState(CreditCardInput) {
       const displayedFields = this._displayedFields();
       const fieldIndex = displayedFields.indexOf(field);
       const previousField = displayedFields[fieldIndex - 1];
-      if (previousField) {
-        if (field === "expiry") {
-          const prevFieldValue = this.state.values[previousField];
-          this.setValues({ [previousField]: prevFieldValue && prevFieldValue.slice(0, -1) });
-        }
-        this.focus(previousField)
-      };
+      this.focus(previousField);
     };
 
     _focusNextField = field => {

@@ -51,10 +51,10 @@ export default class CCInput extends Component {
   };
 
   componentWillReceiveProps = newProps => {
-    const { status, value, onBecomeEmpty, onBecomeValid, field } = this.props;
+    const { status, value, onBecomeEmpty, onBecomeValid, field, handleFocusOnBackspace } = this.props;
     const { status: newStatus, value: newValue } = newProps;
 
-    if (value !== "" && newValue === "") onBecomeEmpty(field);
+    if (!handleFocusOnBackspace && value !== "" && newValue === "") onBecomeEmpty(field)
     if (status !== "valid" && newStatus === "valid") onBecomeValid(field);
   };
 
@@ -62,11 +62,18 @@ export default class CCInput extends Component {
 
   _onFocus = () => this.props.onFocus(this.props.field);
   _onChange = value => this.props.onChange(this.props.field, value);
+  _handleKeyDown = e => {
+    const { value, field, onBecomeEmpty, handleFocusOnBackspace } = this.props;
+    if (handleFocusOnBackspace && e.nativeEvent.key == "Backspace" && value === "" ){
+      onBecomeEmpty(field);
+    }
+  };
 
   render() {
     const { label, value, placeholder, status, keyboardType,
             containerStyle, inputStyle, labelStyle,
             validColor, invalidColor, placeholderColor } = this.props;
+
     return (
       <TouchableOpacity onPress={this.focus}
           activeOpacity={0.99}>
@@ -89,6 +96,7 @@ export default class CCInput extends Component {
               value={value}
               onFocus={this._onFocus}
               onSubmitEditing={this.props.onSubmitEditing}
+              onKeyPress={this._handleKeyDown}
               onChangeText={this._onChange} />
         </View>
       </TouchableOpacity>

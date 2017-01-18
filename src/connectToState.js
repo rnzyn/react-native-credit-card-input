@@ -14,6 +14,7 @@ export const InjectedProps = {
   requiresName: PropTypes.bool,
   requiresCVC: PropTypes.bool,
   requiresPostalCode: PropTypes.bool,
+  handleFocusOnBackspace: PropTypes.bool
 };
 
 export default function connectToState(CreditCardInput) {

@@ -122,11 +122,11 @@ export default class CCInput extends Component {
               onSubmitEditing={this.props.onSubmitEditing}
               onKeyPress={this._handleKeyDown}
               onChangeText={this._onChange}
-              leftButtonText={phoneProps.leftButtonText ? phoneProps.leftButtonText : ''}
-              onCancel={phoneProps.leftButtonAction ? phoneProps.leftButtonAction : null}
+              leftButtonText={(phoneProps && phoneProps.leftButtonText) ? phoneProps.leftButtonText : ''}
+              onCancel={(phoneProps && phoneProps.leftButtonAction) ? phoneProps.leftButtonAction : null}
 
-              rightButtonText={phoneProps.rightButtonText ? phoneProps.rightButtonText : ''}
-              onDone={phoneProps.rightButtonAction ? phoneProps.rightButtonAction : null}
+              rightButtonText={(phoneProps && phoneProps.rightButtonText) ? phoneProps.rightButtonText : ''}
+              onDone={(phoneProps && phoneProps.rightButtonAction) ? phoneProps.rightButtonAction : null}
             />
           }
         </View>

@@ -108,7 +108,7 @@ export default class LiteCreditCardInput extends Component {
     const {
       inputStyle, validColor, invalidColor, placeholderColor,
       placeholders, values, status, handleFocusOnBackspace,
-      onFocus, onChange, onBecomeEmpty, onBecomeValid,
+      onFocus, onChange, onBecomeEmpty, onBecomeValid, isTablet, phoneProps
     } = this.props;
 
     return {
@@ -120,6 +120,7 @@ export default class LiteCreditCardInput extends Component {
       value: values[field],
       status: status[field],
       handleFocusOnBackspace,
+      isTablet, phoneProps,
       onFocus, onChange, onBecomeEmpty, onBecomeValid,
     };
   };

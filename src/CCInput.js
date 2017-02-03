@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from "react";
+import RCTTextInput from 'react-native-textinput-utils';
+
 import {
   View,
   Text,
@@ -72,23 +74,24 @@ export default class CCInput extends Component {
   render() {
     const { label, value, placeholder, status, keyboardType,
             containerStyle, inputStyle, labelStyle,
-            validColor, invalidColor, placeholderColor } = this.props;
+            validColor, invalidColor, placeholderColor, phoneProps, isTablet } = this.props;
 
     return (
       <TouchableOpacity onPress={this.focus}
           activeOpacity={0.99}>
         <View style={[containerStyle]}>
           { !!label && <Text style={[labelStyle]}>{label}</Text>}
-          <TextInput ref="input"
+          {isTablet ?
+            <TextInput ref="input"
               keyboardType={keyboardType}
               autoCapitalise="words"
               autoCorrect={false}
               style={[
-                s.baseInputStyle,
-                inputStyle,
-                ((validColor && status === "valid") ? { color: validColor } :
-                 (invalidColor && status === "invalid") ? { color: invalidColor } :
-                 {}),
+              s.baseInputStyle,
+              inputStyle,
+              ((validColor && status === "valid") ? { color: validColor } :
+              (invalidColor && status === "invalid") ? { color: invalidColor } :
+              {}),
               ]}
               underlineColorAndroid={"transparent"}
               placeholderTextColor={placeholderColor}
@@ -97,7 +100,35 @@ export default class CCInput extends Component {
               onFocus={this._onFocus}
               onSubmitEditing={this.props.onSubmitEditing}
               onKeyPress={this._handleKeyDown}
-              onChangeText={this._onChange} />
+              onChangeText={this._onChange}
+            />
+          :
+            <RCTTextInput ref="input"
+              keyboardType={keyboardType}
+              autoCapitalise="words"
+              autoCorrect={false}
+              style={[
+              s.baseInputStyle,
+              inputStyle,
+              ((validColor && status === "valid") ? { color: validColor } :
+              (invalidColor && status === "invalid") ? { color: invalidColor } :
+              {}),
+              ]}
+              underlineColorAndroid={"transparent"}
+              placeholderTextColor={placeholderColor}
+              placeholder={placeholder}
+              value={value}
+              onFocus={this._onFocus}
+              onSubmitEditing={this.props.onSubmitEditing}
+              onKeyPress={this._handleKeyDown}
+              onChangeText={this._onChange}
+              leftButtonText={phoneProps.leftButtonText ? phoneProps.leftButtonText : ''}
+              onCancel={phoneProps.leftButtonAction ? phoneProps.leftButtonAction : null}
+
+              rightButtonText={phoneProps.rightButtonText ? phoneProps.rightButtonText : ''}
+              onDone={phoneProps.rightButtonAction ? phoneProps.rightButtonAction : null}
+            />
+          }
         </View>
       </TouchableOpacity>
     );

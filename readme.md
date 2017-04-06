@@ -19,7 +19,7 @@ Code:
 
 
 # Features
-* Skeuomorphic credit-card 💳 (inspired by: [card](https://jessepollak.github.io/card/), [react-native-credit-card](https://github.com/sonnylazuardi/react-native-credit-card))
+* Skeuomorphic credit-card (inspired by: [card](https://jessepollak.github.io/card/), [react-native-credit-card](https://github.com/sonnylazuardi/react-native-credit-card))
 * **!!NEW!!** Now you could scale the Credit Card for smaller screens
 * **!!NEW!!** Now you could use CardView as a Component. example use case: showing saved payment details, etc.
 * Lite version for smaller screens (or if skeuomorphic is not really your thing)
@@ -30,7 +30,12 @@ Code:
 # Usage
 
 ```bash
-npm i --save react-native-credit-card-input
+npm i --save rn-credit-card-input
+```
+or
+
+```
+yarn add rn-credit-card-input
 ```
 
 then add these lines in your react-native codebase

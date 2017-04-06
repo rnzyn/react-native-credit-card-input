@@ -1,7 +1,7 @@
 # OSX
 #
 .DS_Store
-
+*.DS_Store
 # Xcode
 #
 build/
@@ -33,9 +33,6 @@ local.properties
 # node.js
 #
 node_modules/
-<<<<<<< HEAD
-**/node_modules/
-=======
 npm-debug.log
 yarn-error.log
 
@@ -54,4 +51,3 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
->>>>>>> master
